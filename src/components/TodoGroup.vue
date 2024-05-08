@@ -79,7 +79,7 @@ const onDraggableChange = (payload: any) => {
   float: right;
   cursor: pointer;
   background-color: #ec1b1b; 
-  color: white; 
+  color: black; 
   border-radius: 20%; 
   padding: 0.01px 8px; 
 }
