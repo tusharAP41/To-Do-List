@@ -24,6 +24,10 @@ const resetForm = () => {
 }
 
 const handleOnSubmit = () => {
+  if (!newTodo.title.trim() && !newTodo.description.trim()) {
+    alert('Please add your task before submitting.')
+    return
+  }
   addNewTodo({
     id: Math.random() * 10000000000000000,
     ...newTodo
@@ -32,16 +36,25 @@ const handleOnSubmit = () => {
   resetForm()
 }
 </script>
-
 <template>
-  <div>
-    <h3 v-if="!shouldDisplayForm" @click="shouldDisplayForm = !shouldDisplayForm">Add New</h3>
+  <div
+    class="todoAdd"
+    :class="{ 'before-click': !shouldDisplayForm, 'after-click': shouldDisplayForm }"
+  >
+    <h3
+      v-if="!shouldDisplayForm"
+      @click="shouldDisplayForm = !shouldDisplayForm"
+      :class="{ 'bottom-position': !shouldDisplayForm, 'top-position': shouldDisplayForm }"
+    >
+      Add New
+    </h3>
     <template v-else>
+      <h1 class="task">Add New Task</h1>
       <form @submit.prevent="handleOnSubmit">
-        <div>
+        <div class="title">
           <input type="text" placeholder="Title" v-model="newTodo.title" />
         </div>
-        <div>
+        <div class="description">
           <textarea type="text" placeholder="Description" v-model="newTodo.description" />
         </div>
 
@@ -52,20 +65,64 @@ const handleOnSubmit = () => {
   </div>
 </template>
 <style scoped>
+.before-click {
+  background-color: black;
+  color: white;
+}
+
+.after-click {
+  background-color: rgb(0, 255, 179);
+}
+
+.bottom-position {
+  position: absolute;
+  bottom: 0;
+  transition: all 0.5s ease;
+}
+
+.top-position {
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease;
+}
 .submit-button,
 .cancel-button {
   border-radius: 9%;
   padding: 8px 16px;
   margin-right: 8px;
 }
+.todoAdd {
+  padding: 20px;
+  color: white;
+  border-radius: 15px;
+
+  margin: 20px;
+}
 
 .submit-button {
   background-color: #007bff;
   color: white;
 }
-
+h1 {
+  color: black;
+  font-size: 15px;
+}
 .cancel-button {
   background-color: #6c757d;
   color: white;
+}
+.task {
+  width: 100px;
+  border-radius: 5px;
+}
+textarea {
+  width: 200px;
+  height: 50px;
+}
+input {
+  width: 200px;
+}
+h3 {
+  color: rgb(134, 131, 131);
 }
 </style>
