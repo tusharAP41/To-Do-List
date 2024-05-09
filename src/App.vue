@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" class="bar">
       <div class="left-content">
-        <v-toolbar-title class="title">TO DO LIST</v-toolbar-title>
+        <v-toolbar-title class="title">To Do List</v-toolbar-title>
       </div>
       <div class="right-content">
         <v-btn text @click="goHome">Home</v-btn>
@@ -62,7 +62,7 @@ const goSignUp = () => {
   margin-left: 30px; /* Adjust as needed */
 }
 .title {
-  font-family: Cantarell; /* Change the font to a Google Font */
+  font-family: 'Helvetica Neue',cursive; /* Change the font to a Google Font */
   font-size: 1.75rem; /* Adjusted font size */
   font-weight: bold;
   color: grey;
