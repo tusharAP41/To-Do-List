@@ -83,7 +83,7 @@ const getCountForStatus = (status: TodoStatus) => {
 <style scoped>
 .main-group-wrapper {
   background-color: black;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 20px;
 }
 .group-wrapper {
@@ -91,7 +91,6 @@ const getCountForStatus = (status: TodoStatus) => {
   padding: 20px;
   background-color: black;
   width: 300px;
-  border-radius: 5%;
 }
 
 .group-wrapper li {
