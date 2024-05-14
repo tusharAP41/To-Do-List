@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Todo, TodoStatus } from '@/types'
+import type { Todo, TodoStatus } from '../types'
 import { reactive, ref } from 'vue'
-import useTodos from '@/store/useTodos'
-
+import useTodos from '../store/useTodos'
+import { addToDo } from '../utils/HandleApi'
 interface Props {
   status: TodoStatus
 }
@@ -23,19 +23,21 @@ const resetForm = () => {
   newTodo.description = ''
 }
 
-const handleOnSubmit = () => {
+const handleOnSubmit = async () => {
   if (!newTodo.title.trim() && !newTodo.description.trim()) {
     alert('Please add your task before submitting.')
     return
   }
-  addNewTodo({
-    id: Math.random() * 10000000000000000,
-    ...newTodo
-  })
-
-  resetForm()
+  try {
+    await addToDo(newTodo.title, newTodo.description, props.status)
+    console.log(newTodo.title, newTodo.description, props.status)
+    resetForm()
+  } catch (error) {
+    console.error('Failed to add todo:', error)
+  }
 }
 </script>
+
 <template>
   <div
     class="todoAdd"
